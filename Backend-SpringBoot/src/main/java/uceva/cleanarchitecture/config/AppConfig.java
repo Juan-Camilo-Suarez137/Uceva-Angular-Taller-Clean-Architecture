@@ -3,15 +3,19 @@ package uceva.cleanarchitecture.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import uceva.cleanarchitecture.application.usecase.commerce.GetAllCommerceUseCase;
+import uceva.cleanarchitecture.application.usecase.finance.GetAllFinanceUseCase;
 import uceva.cleanarchitecture.application.usecase.products.GetAllProductsUseCase;
 import uceva.cleanarchitecture.application.usecase.users.GetAllUsersUseCase;
 import uceva.cleanarchitecture.domain.repository.commerce.CommerceRepository;
+import uceva.cleanarchitecture.domain.repository.finance.FinanceRepository;
 import uceva.cleanarchitecture.domain.repository.products.ProductRepository;
 import uceva.cleanarchitecture.domain.repository.users.UserRepository;
 import uceva.cleanarchitecture.infrastructure.datasource.commerce.CommerceDatasource;
+import uceva.cleanarchitecture.infrastructure.datasource.finance.FinanceDatasource;
 import uceva.cleanarchitecture.infrastructure.datasource.products.ProductDatasource;
 import uceva.cleanarchitecture.infrastructure.datasource.users.UserDatasource;
 import uceva.cleanarchitecture.infrastructure.repository.commerce.CommerceRepositoryImpl;
+import uceva.cleanarchitecture.infrastructure.repository.finance.FinanceRepositoryImpl;
 import uceva.cleanarchitecture.infrastructure.repository.products.ProductRepositoryImpl;
 import uceva.cleanarchitecture.infrastructure.repository.users.UserRepositoryImpl;
 
@@ -34,6 +38,11 @@ public class AppConfig {
     }
 
     @Bean
+    FinanceDatasource financeDatasource(){
+        return new FinanceDatasource();
+    }
+
+    @Bean
     UserRepository userRepository(UserDatasource userDatasource) {
         return new UserRepositoryImpl(userDatasource);
     }
@@ -49,6 +58,11 @@ public class AppConfig {
     }
 
     @Bean
+    FinanceRepository financeRepository(FinanceDatasource financeDatasource) {
+        return new FinanceRepositoryImpl(financeDatasource);
+    }
+
+    @Bean
     GetAllUsersUseCase getAllUsersUseCase(UserRepository userRepository) {
         return new GetAllUsersUseCase(userRepository);
     }
@@ -61,6 +75,11 @@ public class AppConfig {
     @Bean
     GetAllCommerceUseCase getAllCommerceUseCase(CommerceRepository commerceRepository) {
         return new GetAllCommerceUseCase(commerceRepository);
+    }
+
+    @Bean
+    GetAllFinanceUseCase getAllFinanceUseCase(FinanceRepository financeRepository) {
+        return new GetAllFinanceUseCase(financeRepository);
     }
 
 }
