@@ -20,8 +20,7 @@
 *.ipr
 *.iws
 
-# Environment & Logs
-**/.env
+# Logs
 *.log
 npm-debug.log*
 
