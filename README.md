@@ -1,128 +1,78 @@
-# Clean Architecture en Angular
+# Taller 6: Clean Architecture (Angular + Node.js + Spring Boot)
 
-```
-src/app
-│
-├── core
-│   ├── domain
-│   │   ├── models
-│   │   │   ├── user.model.ts
-│   │   │   └── product.model.ts
-│   │   └── repositories
-│   │       ├── user.repository.ts
-│   │       └── product.repository.ts
-│   │
-│   ├── application
-│   │   └── use-cases
-│   │       ├── get-all-users.usecase.ts
-│   │       ├── get-user-by-id.usecase.ts
-│   │       ├── get-all-products.usecase.ts
-│   │       └── get-product-by-id.usecase.ts
-│   │
-│   └── infrastructure
-│       ├── services
-│       │   ├── user-api.service.ts
-│       │   └── product-api.service.ts
-│       └── repositories
-│           ├── user.repository.impl.ts
-│           └── product.repository.impl.ts
-│
-├── presentation
-│   ├── users
-│   └── products
-│
-└── app.config.ts
+Repositorio monorepo para el taller de **Clean Architecture**, estructurado para el trabajo colaborativo por módulos de negocio (`users`, `products`, `commerce`, `finance`, `suppliers`).
+
+---
+
+## 📁 Estructura General del Monorepo
+
+```text
+├── Frontend-Angular/       # Aplicación principal en Angular 20 (Clean Architecture)
+├── Backend-NodeJS/         # Backend en Node.js + Express + TypeScript + Prisma (Clean Architecture)
+└── Backend-SpringBoot/     # Backend en Java 21 + Spring Boot 3.5 + JPA (Clean Architecture)
 ```
 
+---
 
-## Paso 1 - Crear Modelos
+## 🧩 Distribución de Módulos por Capas
 
-```
-src/app/core/domain/models/
-├── user.model.ts
-└── product.model.ts
-```
+En los 3 proyectos se mantiene la separación estricta de **Clean Architecture** (Domain, Application, Infrastructure y Presentation), y dentro de cada capa existen **subcarpetas por cada módulo** para evitar conflictos en Git entre los integrantes del equipo:
 
-## Paso 2 - Crear Repositorios
+- `users` *(Base)*
+- `products` *(Base)*
+- `commerce` *(Módulo 1)*
+- `finance` *(Módulo 2)*
+- `suppliers` *(Módulo 3)*
 
-```
-src/app/core/domain/repositories/
-├── user.repository.ts
-└── product.repository.ts
-```
+### 1. `Frontend-Angular/src/app/`
 
-## Paso 3 - Crear Casos de Uso
-
-### User
-```
-src/app/core/application/usecases/user/
-├── get-all-users.usecase.ts
-└── get-user-by-id.usecase.ts
-```
-
-### Product
-```
-src/app/core/application/usecases/product/
-├── get-all-products.usecase.ts
-└── get-product-by-id.usecase.ts
-```
-
-## Paso 4 - Crear Servicios
-
-
-```
-src/app/core/infrastructure/services/
-├── user.service.ts
-└── product.service.ts
-```
-
-## Paso 5 - Crear Repositorios Implementadores
-
-### Implementación para Consumo de Datos Local
-```
-src/app/core/infrastructure/repositories/local
-├── user-local.repository.impl.ts
-└── product-local.repository.impl.ts
-```
-
-### Implementación para Consumo de Datos NodeJS
-```
-src/app/core/infrastructure/repositories/node
-├── user-node.repository.impl.ts
-└── product-node.repository.impl.ts
-```
-
-## Paso 6 - Agregar Providers con sus Implementadores
-
-```
+```text
 src/app/
-└── app.config.ts
+├── core/
+│   ├── domain/
+│   │   ├── models/{users,products,commerce,finance,suppliers}/
+│   │   └── repositories/{users,products,commerce,finance,suppliers}/
+│   ├── application/
+│   │   └── usecases/{users,products,commerce,finance,suppliers}/
+│   └── infrastructure/
+│       └── repositories/
+│           ├── local-implementation/{users,products,commerce,finance,suppliers}/
+│           ├── node-implementation/{users,products,commerce,finance,suppliers}/
+│           └── springboot-implementation/{users,products,commerce,finance,suppliers}/
+├── mocks/{users,products,commerce,finance,suppliers}/
+└── presentation/
+    ├── components/{users-table,products-table,commerce-table,finance-table,suppliers-table}/
+    └── pages/{users,products,commerce,finance,suppliers}/
 ```
 
-# Funcionamiento del Frontend
+### 2. `Backend-NodeJS/src/`
 
-## Ejecutar Frontend
-```
-npm run start
-```
-
-## Urls Consumo
-
-### Frontend
-```
-http://localhost:4200
-```
-
-### Backend NodeJS
-```
-http://localhost:3000/api/docs
-http://localhost:3000/api/users/{countUsers}
-http://localhost:3000/api/products/{countProducts}
+```text
+src/
+├── domain/
+│   ├── models/{users,products,commerce,finance,suppliers}/
+│   └── repositories/{users,products,commerce,finance,suppliers}/
+├── application/
+│   └── usecases/{users,products,commerce,finance,suppliers}/
+└── infrastructure/
+    ├── datasources/{users,products,commerce,finance,suppliers}/
+    ├── repositories/{users,products,commerce,finance,suppliers}/
+    └── web/
+        ├── controllers/{users,products,commerce,finance,suppliers}/
+        └── routes/{users,products,commerce,finance,suppliers}/
 ```
 
-### Backend SpringBoot
-```
-http://localhost:3000/api/swagger-ui/index.html
-http://localhost:3000/api/users/{countUsers}
-http://localhost:3000/api/products/{countProducts}
+### 3. `Backend-SpringBoot/src/main/java/uceva/cleanarchitecture/`
+
+```text
+uceva/cleanarchitecture/
+├── domain/
+│   ├── entity/{users,products,commerce,finance,suppliers}/
+│   └── repository/{users,products,commerce,finance,suppliers}/
+├── application/
+│   └── usecase/{users,products,commerce,finance,suppliers}/
+└── infrastructure/
+    ├── datasource/{users,products,commerce,finance,suppliers}/
+    ├── repository/{users,products,commerce,finance,suppliers}/
+    └── controller/{users,products,commerce,finance,suppliers}/
 ```

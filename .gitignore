@@ -1,44 +1,30 @@
-# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+# Dependencies
+**/node_modules/
 
-# Compiled output
-/dist
-/tmp
-/out-tsc
-/bazel-out
-/documentation
+# Angular / Node build outputs
+**/dist/
+**/out-tsc/
+**/.angular/
+**/coverage/
+**/documentation/
 
-# Node
-/node_modules
-npm-debug.log
-yarn-error.log
+# Spring Boot / Gradle build outputs
+**/.gradle/
+**/build/
+!**/gradle/wrapper/gradle-wrapper.jar
 
-# IDEs and editors
+# IDEs & Editors
 .idea/
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
+.vscode/
+*.iml
+*.ipr
+*.iws
 
-# Visual Studio Code
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-.history/*
+# Environment & Logs
+**/.env
+*.log
+npm-debug.log*
 
-# Miscellaneous
-/.angular/cache
-.sass-cache/
-/connect.lock
-/coverage
-/libpeerconnection.log
-testem.log
-/typings
-__screenshots__/
-
-# System files
+# OS
 .DS_Store
 Thumbs.db

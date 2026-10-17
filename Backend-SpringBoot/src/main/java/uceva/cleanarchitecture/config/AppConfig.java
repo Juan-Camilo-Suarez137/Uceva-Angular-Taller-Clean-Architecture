@@ -1,0 +1,47 @@
+package uceva.cleanarchitecture.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import uceva.cleanarchitecture.application.usecase.products.GetAllProductsUseCase;
+import uceva.cleanarchitecture.application.usecase.users.GetAllUsersUseCase;
+import uceva.cleanarchitecture.domain.repository.products.ProductRepository;
+import uceva.cleanarchitecture.domain.repository.users.UserRepository;
+import uceva.cleanarchitecture.infrastructure.datasource.products.ProductDatasource;
+import uceva.cleanarchitecture.infrastructure.datasource.users.UserDatasource;
+import uceva.cleanarchitecture.infrastructure.repository.products.ProductRepositoryImpl;
+import uceva.cleanarchitecture.infrastructure.repository.users.UserRepositoryImpl;
+
+@Configuration
+public class AppConfig {
+
+    @Bean
+    UserDatasource userDatasource(){
+        return new UserDatasource();
+    }
+
+    @Bean
+    ProductDatasource productDatasource(){
+        return new ProductDatasource();
+    }
+
+    @Bean
+    UserRepository userRepository(UserDatasource userDatasource) {
+        return new UserRepositoryImpl(userDatasource);
+    }
+
+    @Bean
+    ProductRepository productRepository(ProductDatasource productDatasource) {
+        return new ProductRepositoryImpl(productDatasource);
+    }
+
+    @Bean
+    GetAllUsersUseCase getAllUsersUseCase(UserRepository userRepository) {
+        return new GetAllUsersUseCase(userRepository);
+    }
+
+    @Bean
+    GetAllProductsUseCase getAllProductsUseCase(ProductRepository productRepository) {
+        return new GetAllProductsUseCase(productRepository);
+    }
+
+}
