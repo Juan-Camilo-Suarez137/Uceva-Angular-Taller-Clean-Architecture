@@ -8,8 +8,8 @@ Repositorio monorepo para el taller de **Clean Architecture**, estructurado para
 
 ```text
 ├── Frontend-Angular/       # Aplicación principal en Angular 20 (Clean Architecture)
-├── Backend-NodeJS/         # Backend en Node.js + Express + TypeScript + Prisma (Clean Architecture)
-└── Backend-SpringBoot/     # Backend en Java 21 + Spring Boot 3.5 + JPA (Clean Architecture)
+├── Backend-NodeJS/         # Backend en Node.js + Express + TypeScript (Clean Architecture)
+└── Backend-SpringBoot/     # Backend en Java 25 + Spring Boot 4.0.1 (Clean Architecture)
 ```
 
 ---
