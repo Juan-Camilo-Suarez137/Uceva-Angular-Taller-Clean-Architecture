@@ -63,4 +63,5 @@ http://localhost:8080/api/swagger-ui/index.html
 http://localhost:8080/api/users/{countUsers}
 http://localhost:8080/api/products/{countProducts}
 http://localhost:8080/api/commerce/{countCommerce}
+http://localhost:8080/api/suppliers/{countSuppliers}
 ```
