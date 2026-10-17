@@ -1,0 +1,81 @@
+import { Routes } from '@angular/router';
+import { UsersPage } from './presentation/pages/users/users.page';
+import { ProductsPage } from './presentation/pages/products/products.page';
+import { CommercePage } from './presentation/pages/commerce/commerce.page';
+import { FinancePage } from './presentation/pages/finance/finance.page';
+import { SuppliersPage } from './presentation/pages/suppliers/suppliers.page';
+
+/**
+ * Definición de las rutas principales de la aplicación.
+ *
+ * @remarks
+ * Este archivo contiene la configuración de enrutamiento
+ * utilizada por Angular Router para mapear las URLs
+ * a los componentes correspondientes.
+ *
+ * Incluye:
+ * - Rutas de navegación principales
+ * - Redirección por defecto para rutas no existentes
+ *
+ * @see {@link UsersPage}
+ * @see {@link ProductsPage}
+ * @see {@link CommercePage}
+ * @see {@link FinancePage}
+ * @see {@link SuppliersPage}
+ */
+export const routes: Routes = [
+
+  /**
+   * Ruta de usuarios.
+   *
+   * @remarks
+   * Renderiza el componente `UsersPage`, encargado
+   * de mostrar y gestionar el listado de usuarios.
+   */
+  { path: 'users', component: UsersPage },
+
+  /**
+   * Ruta de productos.
+   *
+   * @remarks
+   * Renderiza el componente `ProductsPage`, encargado
+   * de mostrar y gestionar el listado de productos.
+   */
+  { path: 'products', component: ProductsPage },
+
+  /**
+   * Ruta de comercio.
+   *
+   * @remarks
+   * Renderiza el componente `CommercePage`, encargado
+   * de mostrar y gestionar el listado de artículos comerciales.
+   */
+  { path: 'commerce', component: CommercePage },
+
+  /**
+   * Ruta de finanzas.
+   *
+   * @remarks
+   * Renderiza el componente `FinancePage`, encargado
+   * de mostrar y gestionar el listado de transacciones.
+   */
+  { path: 'finance', component: FinancePage },
+
+  /**
+   * Ruta de proveedores.
+   *
+   * @remarks
+   * Renderiza el componente `SuppliersPage`, encargado
+   * de mostrar y gestionar el listado de proveedores.
+   */
+  { path: 'suppliers', component: SuppliersPage },
+
+  /**
+   * Ruta comodín.
+   *
+   * @remarks
+   * Captura cualquier ruta no definida y redirige
+   * automáticamente a la ruta de usuarios.
+   */
+  { path: '**', redirectTo: 'users' },
+];
