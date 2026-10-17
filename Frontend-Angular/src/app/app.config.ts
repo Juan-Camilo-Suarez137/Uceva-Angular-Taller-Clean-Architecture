@@ -45,7 +45,7 @@ export const appConfig: ApplicationConfig = {
     //Local Providers
     { provide: UserRepository, useClass: UserLocalRepositoryImpl },
     { provide: ProductRepository, useClass: ProductLocalRepositoryImpl },
-    { provide: CommerceRepository, useClass: CommerceLocalRepositoryImpl },
+    //{ provide: CommerceRepository, useClass: CommerceLocalRepositoryImpl },
     
     //Node Providers
     //{ provide: UserRepository, useClass: UserNodeRepositoryImpl },
@@ -55,7 +55,7 @@ export const appConfig: ApplicationConfig = {
     //SpringBoot Providers
     //{ provide: UserRepository, useClass: UserSpringBootRepositoryImpl },
     //{ provide: ProductRepository, useClass: ProductSpringBootRepositoryImpl },
-    //{ provide: CommerceRepository, useClass: CommerceSpringBootRepositoryImpl },
+    { provide: CommerceRepository, useClass: CommerceSpringBootRepositoryImpl },
 
     /**
      * Proveedor de listeners globales de errores del navegador.

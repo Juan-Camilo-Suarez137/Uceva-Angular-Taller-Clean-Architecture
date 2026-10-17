@@ -11,8 +11,8 @@ import { Commerce, CommerceDepartment } from "../../../domain/models/commerce/co
  * Utiliza la librería {@link https://www.npmjs.com/package/@faker-js/faker | faker}
  * para generar información comercial ficticia.
  *
- * ❗ No contiene lógica de negocio.
- * ❗ No implementa repositorios del dominio.
+ * No contiene lógica de negocio.
+ * No implementa repositorios del dominio.
  *
  * Es consumida por `CommerceRepositoryImpl`, que se encarga
  * de adaptar los datos al dominio y exponerlos mediante
