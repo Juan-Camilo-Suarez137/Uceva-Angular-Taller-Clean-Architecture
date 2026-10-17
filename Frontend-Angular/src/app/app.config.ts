@@ -18,6 +18,10 @@ import { FinanceRepository } from './core/domain/repositories/finance/finance.re
 import { FinanceLocalRepositoryImpl } from './core/infrastructure/repositories/local-implementation/finance/finance-local.repository.impl';
 import { FinanceNodeRepositoryImpl } from './core/infrastructure/repositories/node-implementation/finance/finance-node.repository.impl';
 import { FinanceSpringBootRepositoryImpl } from './core/infrastructure/repositories/springboot-implementation/finance/finance-springboot.repository.impl';
+import { SupplierRepository } from './core/domain/repositories/suppliers/supplier.repository';
+import { SupplierLocalRepositoryImpl } from './core/infrastructure/repositories/local-implementation/suppliers/supplier-local.repository.impl';
+import { SupplierNodeRepositoryImpl } from './core/infrastructure/repositories/node-implementation/suppliers/supplier-node.repository.impl';
+import { SupplierSpringBootRepositoryImpl } from './core/infrastructure/repositories/springboot-implementation/suppliers/supplier-springboot.repository.impl';
 
 /**
  * Configuración principal de la aplicación Angular.
@@ -51,18 +55,21 @@ export const appConfig: ApplicationConfig = {
     { provide: ProductRepository, useClass: ProductLocalRepositoryImpl },
     //{ provide: CommerceRepository, useClass: CommerceLocalRepositoryImpl },
     { provide: FinanceRepository, useClass: FinanceLocalRepositoryImpl },
+    { provide: SupplierRepository, useClass: SupplierLocalRepositoryImpl },
     
     //Node Providers
     //{ provide: UserRepository, useClass: UserNodeRepositoryImpl },
     //{ provide: ProductRepository, useClass: ProductNodeRepositoryImpl },
     //{ provide: CommerceRepository, useClass: CommerceNodeRepositoryImpl },
     //{ provide: FinanceRepository, useClass: FinanceNodeRepositoryImpl },
+    //{ provide: SupplierRepository, useClass: SupplierNodeRepositoryImpl },
 
     //SpringBoot Providers
     //{ provide: UserRepository, useClass: UserSpringBootRepositoryImpl },
     //{ provide: ProductRepository, useClass: ProductSpringBootRepositoryImpl },
     { provide: CommerceRepository, useClass: CommerceSpringBootRepositoryImpl },
     //{ provide: FinanceRepository, useClass: FinanceSpringBootRepositoryImpl },
+    //{ provide: SupplierRepository, useClass: SupplierSpringBootRepositoryImpl },
 
     /**
      * Proveedor de listeners globales de errores del navegador.
