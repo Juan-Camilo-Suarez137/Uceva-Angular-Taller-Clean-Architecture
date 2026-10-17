@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { UsersPage } from './presentation/pages/users/users.page';
 import { ProductsPage } from './presentation/pages/products/products.page';
-
+import { FinancePage } from './presentation/pages/finance/finance.page';
 /**
  * Definición de las rutas principales de la aplicación.
  *
@@ -37,6 +37,15 @@ export const routes: Routes = [
    */
   { path: 'products', component: ProductsPage },
 
+    /**
+   * Ruta de finanzas.
+   *
+   * @remarks
+   * Renderiza el componente `FinancePage`, encargado
+   * de mostrar y gestionar el listado de transacciones.
+   */
+  { path: 'finance', component: FinancePage },
+  
   /**
    * Ruta comodín.
    *

@@ -10,6 +10,10 @@ import { UserSpringBootRepositoryImpl } from './core/infrastructure/repositories
 import { ProductSpringBootRepositoryImpl } from './core/infrastructure/repositories/springboot-implementation/products/product-springboot.repository.impl';
 import { UserLocalRepositoryImpl } from './core/infrastructure/repositories/local-implementation/users/user-local.repository.impl';
 import { ProductLocalRepositoryImpl } from './core/infrastructure/repositories/local-implementation/products/product-local.repository.impl';
+import { FinanceRepository } from './core/domain/repositories/finance/finance.repository';
+import { FinanceLocalRepositoryImpl } from './core/infrastructure/repositories/local-implementation/finance/finance-local.repository.impl';
+import { FinanceNodeRepositoryImpl } from './core/infrastructure/repositories/node-implementation/finance/finance-node.repository.impl';
+import { FinanceSpringBootRepositoryImpl } from './core/infrastructure/repositories/springboot-implementation/finance/finance-springboot.repository.impl';
 
 /**
  * Configuración principal de la aplicación Angular.
@@ -38,17 +42,20 @@ export const appConfig: ApplicationConfig = {
    */
   providers: [
 
-    //Local Providers
+        //Local Providers
     { provide: UserRepository, useClass: UserLocalRepositoryImpl },
     { provide: ProductRepository, useClass: ProductLocalRepositoryImpl },
-    
+    { provide: FinanceRepository, useClass: FinanceLocalRepositoryImpl },
+
     //Node Providers
     //{ provide: UserRepository, useClass: UserNodeRepositoryImpl },
     //{ provide: ProductRepository, useClass: ProductNodeRepositoryImpl },
+    //{ provide: FinanceRepository, useClass: FinanceNodeRepositoryImpl },
 
     //SpringBoot Providers
     //{ provide: UserRepository, useClass: UserSpringBootRepositoryImpl },
     //{ provide: ProductRepository, useClass: ProductSpringBootRepositoryImpl },
+    //{ provide: FinanceRepository, useClass: FinanceSpringBootRepositoryImpl },
 
     /**
      * Proveedor de listeners globales de errores del navegador.
