@@ -1,128 +1,84 @@
 # Clean Architecture en Angular
 
-```
+```text
 src/app
 │
 ├── core
 │   ├── domain
 │   │   ├── models
-│   │   │   ├── user.model.ts
-│   │   │   └── product.model.ts
+│   │   │   ├── users/user.model.ts
+│   │   │   ├── products/product.model.ts
+│   │   │   ├── commerce/commerce.model.ts
+│   │   │   ├── finance/
+│   │   │   └── suppliers/
 │   │   └── repositories
-│   │       ├── user.repository.ts
-│   │       └── product.repository.ts
+│   │       ├── users/user.repository.ts
+│   │       ├── products/product.repository.ts
+│   │       ├── commerce/commerce.repository.ts
+│   │       ├── finance/
+│   │       └── suppliers/
 │   │
 │   ├── application
-│   │   └── use-cases
-│   │       ├── get-all-users.usecase.ts
-│   │       ├── get-user-by-id.usecase.ts
-│   │       ├── get-all-products.usecase.ts
-│   │       └── get-product-by-id.usecase.ts
+│   │   └── usecases
+│   │       ├── users/get-all-users.usecase.ts
+│   │       ├── products/get-all-products.usecase.ts
+│   │       ├── commerce/get-all-commerce.usecase.ts
+│   │       ├── finance/
+│   │       └── suppliers/
 │   │
 │   └── infrastructure
 │       ├── services
-│       │   ├── user-api.service.ts
-│       │   └── product-api.service.ts
+│       │   └── data.service.ts
 │       └── repositories
-│           ├── user.repository.impl.ts
-│           └── product.repository.impl.ts
+│           ├── local-implementation/{users,products,commerce,finance,suppliers}/
+│           ├── node-implementation/{users,products,commerce,finance,suppliers}/
+│           └── springboot-implementation/{users,products,commerce,finance,suppliers}/
 │
+├── mocks/{users,products,commerce,finance,suppliers}/
 ├── presentation
-│   ├── users
-│   └── products
+│   ├── components/{alert,users-table,products-table,commerce-table,finance-table,suppliers-table}/
+│   ├── interfaces/state.interface.ts
+│   └── pages/{users,products,commerce,finance,suppliers}/
 │
-└── app.config.ts
-```
-
-
-## Paso 1 - Crear Modelos
-
-```
-src/app/core/domain/models/
-├── user.model.ts
-└── product.model.ts
-```
-
-## Paso 2 - Crear Repositorios
-
-```
-src/app/core/domain/repositories/
-├── user.repository.ts
-└── product.repository.ts
-```
-
-## Paso 3 - Crear Casos de Uso
-
-### User
-```
-src/app/core/application/usecases/user/
-├── get-all-users.usecase.ts
-└── get-user-by-id.usecase.ts
-```
-
-### Product
-```
-src/app/core/application/usecases/product/
-├── get-all-products.usecase.ts
-└── get-product-by-id.usecase.ts
-```
-
-## Paso 4 - Crear Servicios
-
-
-```
-src/app/core/infrastructure/services/
-├── user.service.ts
-└── product.service.ts
-```
-
-## Paso 5 - Crear Repositorios Implementadores
-
-### Implementación para Consumo de Datos Local
-```
-src/app/core/infrastructure/repositories/local
-├── user-local.repository.impl.ts
-└── product-local.repository.impl.ts
-```
-
-### Implementación para Consumo de Datos NodeJS
-```
-src/app/core/infrastructure/repositories/node
-├── user-node.repository.impl.ts
-└── product-node.repository.impl.ts
-```
-
-## Paso 6 - Agregar Providers con sus Implementadores
-
-```
-src/app/
 └── app.config.ts
 ```
 
 # Funcionamiento del Frontend
 
 ## Ejecutar Frontend
-```
+```bash
 npm run start
 ```
 
-## Urls Consumo
+## Ejecutar Pruebas Unitarias y Cobertura
+```bash
+npm run test:cov
+```
+
+## Generar Documentación Técnica (Compodoc)
+```bash
+npm run doc:build
+```
+
+## URLs de Consumo
 
 ### Frontend
-```
+```text
 http://localhost:4200
 ```
 
 ### Backend NodeJS
-```
+```text
 http://localhost:3000/api/docs
 http://localhost:3000/api/users/{countUsers}
 http://localhost:3000/api/products/{countProducts}
+http://localhost:3000/api/commerce/{countCommerce}
 ```
 
 ### Backend SpringBoot
-```
-http://localhost:3000/api/swagger-ui/index.html
-http://localhost:3000/api/users/{countUsers}
-http://localhost:3000/api/products/{countProducts}
+```text
+http://localhost:8080/api/swagger-ui/index.html
+http://localhost:8080/api/users/{countUsers}
+http://localhost:8080/api/products/{countProducts}
+http://localhost:8080/api/commerce/{countCommerce}
 ```

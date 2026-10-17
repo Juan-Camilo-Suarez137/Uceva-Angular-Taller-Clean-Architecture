@@ -3,6 +3,7 @@ import { inject, Injectable } from "@angular/core";
 import { faker } from '@faker-js/faker';
 import { Observable, of } from "rxjs";
 import { environment } from "../../../../environments/environment";
+import { Commerce, CommerceDepartment } from "../../domain/models/commerce/commerce.model";
 import { Product, ProductCategory } from "../../domain/models/products/product.model";
 import { User, UserEngineering } from "../../domain/models/users/user.model";
 
@@ -16,6 +17,7 @@ import { User, UserEngineering } from "../../domain/models/users/user.model";
  *
  * - Datos locales simulados (mocks)
  * - Backend Node.js mediante HTTP
+ * - Backend SpringBoot mediante HTTP
  *
  * ❗ No contiene lógica de negocio.
  * ❗ No debe ser consumido directamente por los casos de uso.
@@ -110,6 +112,37 @@ export class DataService {
     }
 
     /**
+     * Obtiene el listado de artículos comerciales desde datos locales simulados.
+     *
+     * @param countCommerce - Cantidad de artículos comerciales a solicitar
+     * @returns Observable que emite un arreglo de {@link Commerce}
+     */
+    getAllCommerceLocal(countCommerce: number): Observable<Commerce[]> {
+        const commerceList: Commerce[] = [];
+        const commerceDepartments: CommerceDepartment[] = [
+            'Tecnologia',
+            'Hogar',
+            'Ropa',
+            'Deportes',
+            'Juguetes',
+        ];
+        for (let i = 1; i <= countCommerce; i++) {
+            commerceList.push({
+                id: i,
+                product: faker.commerce.productName(),
+                material: faker.commerce.productMaterial(),
+                description: faker.commerce.productDescription(),
+                isbn: faker.commerce.isbn(),
+                price: Number(
+                    faker.commerce.price({ min: 10, max: 500, dec: 2 })
+                ),
+                department: faker.helpers.arrayElement(commerceDepartments),
+            });
+        }
+        return of(commerceList);
+    }
+
+    /**
      * Obtiene el listado de usuarios desde el backend Node.js.
      *
      * @remarks
@@ -155,6 +188,20 @@ export class DataService {
     }
 
     /**
+     * Obtiene el listado de artículos comerciales desde el backend Node.js.
+     *
+     * @remarks
+     * Realiza una petición HTTP GET al endpoint
+     * `/commerce/{countCommerce}`.
+     *
+     * @param countCommerce - Cantidad de artículos comerciales a solicitar
+     * @returns Observable que emite un arreglo de {@link Commerce}
+     */
+    getAllCommerceNode(countCommerce: number): Observable<Commerce[]> {
+        return this.httpClient.get<Commerce[]>(`${this.nodeUrl}/commerce/${countCommerce}`);
+    }
+
+    /**
      * Obtiene el listado de usuarios desde el backend SpringBoot.
      *
      * @remarks
@@ -197,6 +244,20 @@ export class DataService {
      */
     getAllProductsSpringBoot(countProducts: number): Observable<Product[]> {
         return this.httpClient.get<Product[]>(`${this.springBootUrl}/products/${countProducts}`);
+    }
+
+    /**
+     * Obtiene el listado de artículos comerciales desde el backend SpringBoot.
+     *
+     * @remarks
+     * Realiza una petición HTTP GET al endpoint
+     * `/commerce/{countCommerce}`.
+     *
+     * @param countCommerce - Cantidad de artículos comerciales a solicitar
+     * @returns Observable que emite un arreglo de {@link Commerce}
+     */
+    getAllCommerceSpringBoot(countCommerce: number): Observable<Commerce[]> {
+        return this.httpClient.get<Commerce[]>(`${this.springBootUrl}/commerce/${countCommerce}`);
     }
 
 }
