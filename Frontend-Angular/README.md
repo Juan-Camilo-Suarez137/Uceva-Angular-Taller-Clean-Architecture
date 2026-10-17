@@ -73,6 +73,7 @@ http://localhost:3000/api/docs
 http://localhost:3000/api/users/{countUsers}
 http://localhost:3000/api/products/{countProducts}
 http://localhost:3000/api/commerce/{countCommerce}
+http://localhost:3000/api/suppliers/{countSuppliers}
 ```
 
 ### Backend SpringBoot
@@ -81,4 +82,5 @@ http://localhost:8080/api/swagger-ui/index.html
 http://localhost:8080/api/users/{countUsers}
 http://localhost:8080/api/products/{countProducts}
 http://localhost:8080/api/commerce/{countCommerce}
+http://localhost:8080/api/suppliers/{countSuppliers}
 ```

@@ -46,7 +46,8 @@ export class App {
    *     { text: 'Usuarios', url: '/users' },
    *     { text: 'Productos', url: '/products' },
    *     { text: 'Comercio', url: '/commerce' },
-   *     { text: 'Finanzas', url: '/finance' }
+   *     { text: 'Finanzas', url: '/finance' },
+   *     { text: 'Proveedores', url: '/suppliers' }
    *   ]
    * }
    * ```
@@ -62,6 +63,7 @@ export class App {
       { text: 'Productos', url: '/products' },
       { text: 'Comercio', url: '/commerce' },
       { text: 'Finanzas', url: '/finance' },
+      { text: 'Proveedores', url: '/suppliers' },
     ]
   };
 }

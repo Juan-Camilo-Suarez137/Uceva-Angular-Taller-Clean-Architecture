@@ -3,13 +3,14 @@ import { UsersRoutes } from "./users/users.routes";
 import { ProductsRoutes } from "./products/products.routes";
 import { CommerceRoutes } from "./commerce/commerce.routes";
 import { FinanceRoutes } from "./finance/finance.routes";
+import { SuppliersRoutes } from "./suppliers/suppliers.routes";
 
 /**
  * Clase encargada de centralizar todas las rutas de la aplicación.
  *
  * @remarks
  * Proporciona un único punto de acceso a los endpoints
- * del backend, agrupando los módulos de usuarios, productos, comercio y finanzas.
+ * del backend, agrupando los módulos de usuarios, productos, comercio, finanzas y proveedores.
  *
  * @example
  * ```ts
@@ -35,6 +36,7 @@ export class AppRoutes {
     router.use("/api/products", ProductsRoutes.routes);
     router.use("/api/commerce", CommerceRoutes.routes);
     router.use("/api/finance", FinanceRoutes.routes);
+    router.use("/api/suppliers", SuppliersRoutes.routes);
 
     return router;
   }

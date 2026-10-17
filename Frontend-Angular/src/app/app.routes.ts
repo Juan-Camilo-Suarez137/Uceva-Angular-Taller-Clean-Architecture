@@ -3,6 +3,7 @@ import { UsersPage } from './presentation/pages/users/users.page';
 import { ProductsPage } from './presentation/pages/products/products.page';
 import { CommercePage } from './presentation/pages/commerce/commerce.page';
 import { FinancePage } from './presentation/pages/finance/finance.page';
+import { SuppliersPage } from './presentation/pages/suppliers/suppliers.page';
 
 /**
  * Definición de las rutas principales de la aplicación.
@@ -20,6 +21,7 @@ import { FinancePage } from './presentation/pages/finance/finance.page';
  * @see {@link ProductsPage}
  * @see {@link CommercePage}
  * @see {@link FinancePage}
+ * @see {@link SuppliersPage}
  */
 export const routes: Routes = [
 
@@ -58,6 +60,15 @@ export const routes: Routes = [
    * de mostrar y gestionar el listado de transacciones.
    */
   { path: 'finance', component: FinancePage },
+
+  /**
+   * Ruta de proveedores.
+   *
+   * @remarks
+   * Renderiza el componente `SuppliersPage`, encargado
+   * de mostrar y gestionar el listado de proveedores.
+   */
+  { path: 'suppliers', component: SuppliersPage },
 
   /**
    * Ruta comodín.
