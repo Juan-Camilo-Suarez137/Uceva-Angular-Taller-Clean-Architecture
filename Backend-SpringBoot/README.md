@@ -8,45 +8,45 @@ src/main/java/uceva/cleanarchitecture
 │   │   ├── users/User.java
 │   │   ├── products/Product.java
 │   │   ├── commerce/Commerce.java
-│   │   ├── finance/
-│   │   └── suppliers/
+│   │   ├── finance/Finance.java
+│   │   └── suppliers/Supplier.java
 │   │
 │   └── repository/
 │       ├── users/UserRepository.java
 │       ├── products/ProductRepository.java
 │       ├── commerce/CommerceRepository.java
-│       ├── finance/
-│       └── suppliers/
+│       ├── finance/FinanceRepository.java
+│       └── suppliers/SupplierRepository.java
 │
 ├── application
 │   └── usecase/
 │       ├── users/GetAllUsersUseCase.java
 │       ├── products/GetAllProductsUseCase.java
 │       ├── commerce/GetAllCommerceUseCase.java
-│       ├── finance/
-│       └── suppliers/
+│       ├── finance/GetAllFinanceUseCase.java
+│       └── suppliers/GetAllSuppliersUseCase.java
 │
 ├── infrastructure
 │   ├── controller/
 │   │   ├── users/UserController.java
 │   │   ├── products/ProductController.java
 │   │   ├── commerce/CommerceController.java
-│   │   ├── finance/
-│   │   └── suppliers/
+│   │   ├── finance/FinanceController.java
+│   │   └── suppliers/SupplierController.java
 │   │
 │   ├── repository/
 │   │   ├── users/UserRepositoryImpl.java
 │   │   ├── products/ProductRepositoryImpl.java
 │   │   ├── commerce/CommerceRepositoryImpl.java
-│   │   ├── finance/
-│   │   └── suppliers/
+│   │   ├── finance/FinanceRepositoryImpl.java
+│   │   └── suppliers/SupplierRepositoryImpl.java
 │   │
 │   └── datasource/
 │       ├── users/UserDatasource.java
 │       ├── products/ProductDatasource.java
 │       ├── commerce/CommerceDatasource.java
-│       ├── finance/
-│       └── suppliers/
+│       ├── finance/FinanceDatasource.java
+│       └── suppliers/SupplierDatasource.java
 │
 ├── config
 │   ├── AppConfig.java
@@ -63,5 +63,6 @@ http://localhost:8080/api/swagger-ui/index.html
 http://localhost:8080/api/users/{countUsers}
 http://localhost:8080/api/products/{countProducts}
 http://localhost:8080/api/commerce/{countCommerce}
+http://localhost:8080/api/finance/{countFinance}
 http://localhost:8080/api/suppliers/{countSuppliers}
 ```
