@@ -2,16 +2,21 @@ import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { environment } from '../../../../environments/environment';
+import { Commerce } from '../../domain/models/commerce/commerce.model';
 import { Product } from '../../domain/models/products/product.model';
 import { User } from '../../domain/models/users/user.model';
 import { DataService } from './data.service';
 import { USERS_MOCK } from '../../../mocks/users/users.mocks';
 import { PRODUCTS_MOCK } from '../../../mocks/products/products.mocks';
+import { COMMERCE_MOCK } from '../../../mocks/commerce/commerce.mocks';
 
 jest.mock('@faker-js/faker', () => ({
   faker: {
     commerce: {
       productName: jest.fn(() => 'Producto Test'),
+      productMaterial: jest.fn(() => 'Aluminio'),
+      productDescription: jest.fn(() => 'Descripción Test'),
+      isbn: jest.fn(() => '978-3-16-148410-0'),
       price: jest.fn(() => '10.00'),
     },
     person: {
@@ -36,6 +41,7 @@ describe('DataService', () => {
   
   const countUsers = 5;
   const countProducts = 5;
+  const countCommerce = 5;
   const pathUrlNode = `${environment.baseUrlNode}/api`;
   const pathUrlSpringBoot = `${environment.baseUrlSpringBoot}/api`;
 
@@ -73,6 +79,13 @@ describe('DataService', () => {
     });
   });
 
+  it('debe devolver el listado de artículos comerciales locale', (done) => {
+    service.getAllCommerceLocal(countCommerce).subscribe((commerce: Commerce[]) => {
+      expect(commerce.length).toEqual(countCommerce);
+      done();
+    });
+  });
+
   it('debe obtener usuarios desde Node por HTTP', () => {
     service.getAllUsersNode(countUsers).subscribe((users) => {
       expect(users).toEqual(USERS_MOCK);
@@ -91,6 +104,15 @@ describe('DataService', () => {
     req.flush(PRODUCTS_MOCK);
   });
 
+  it('debe obtener artículos comerciales desde Node por HTTP', () => {
+    service.getAllCommerceNode(countCommerce).subscribe((commerce) => {
+      expect(commerce).toEqual(COMMERCE_MOCK);
+    });
+    const req = httpMock.expectOne(`${pathUrlNode}/commerce/${countCommerce}`);
+    expect(req.request.method).toBe('GET');
+    req.flush(COMMERCE_MOCK);
+  });
+
   it('debe obtener usuarios desde SpringBoot por HTTP', () => {
     service.getAllUsersSpringBoot(countUsers).subscribe((users) => {
       expect(users).toEqual(USERS_MOCK);
@@ -107,6 +129,15 @@ describe('DataService', () => {
     const req = httpMock.expectOne(`${pathUrlSpringBoot}/products/${countProducts}`);
     expect(req.request.method).toBe('GET');
     req.flush(PRODUCTS_MOCK);
+  });
+
+  it('debe obtener artículos comerciales desde SpringBoot por HTTP', () => {
+    service.getAllCommerceSpringBoot(countCommerce).subscribe((commerce) => {
+      expect(commerce).toEqual(COMMERCE_MOCK);
+    });
+    const req = httpMock.expectOne(`${pathUrlSpringBoot}/commerce/${countCommerce}`);
+    expect(req.request.method).toBe('GET');
+    req.flush(COMMERCE_MOCK);
   });
 
 });
